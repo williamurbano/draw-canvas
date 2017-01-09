@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title Canvas Draw
+    link(rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css")
+    link(rel="stylesheet" href="css/draw-canvas.css")
+  body
+    .container
+      .toolbar
+        .color-palette
+          .color-item(onclick="drawCanvas1.setCursorColor('#F44336')" style="background-color: #F44336")
+          .color-item(onclick="drawCanvas1.setCursorColor('#E91E63')" style="background-color: #E91E63")
+          .color-item(onclick="drawCanvas1.setCursorColor('#9C27B0')" style="background-color: #9C27B0")
+          .color-item(onclick="drawCanvas1.setCursorColor('#673AB7')" style="background-color: #673AB7")
+          .color-item(onclick="drawCanvas1.setCursorColor('#3F51B5')" style="background-color: #3F51B5")
+          .color-item(onclick="drawCanvas1.setCursorColor('#2196F3')" style="background-color: #2196F3")
+          .color-item(onclick="drawCanvas1.setCursorColor('#03A9F4')" style="background-color: #03A9F4")
+          .color-item(onclick="drawCanvas1.setCursorColor('#00BCD4')" style="background-color: #00BCD4")
+          .color-item(onclick="drawCanvas1.setCursorColor('#009688')" style="background-color: #009688")
+          .color-item(onclick="drawCanvas1.setCursorColor('#4CAF50')" style="background-color: #4CAF50")
+          .color-item(onclick="drawCanvas1.setCursorColor('#8BC34A')" style="background-color: #8BC34A")
+          .color-item(onclick="drawCanvas1.setCursorColor('#CDDC39')" style="background-color: #CDDC39")
+          .color-item(onclick="drawCanvas1.setCursorColor('#FFEB3B')" style="background-color: #FFEB3B")
+          .color-item(onclick="drawCanvas1.setCursorColor('#FFC107')" style="background-color: #FFC107")
+          .color-item(onclick="drawCanvas1.setCursorColor('#FF9800')" style="background-color: #FF9800")
+          .color-item(onclick="drawCanvas1.setCursorColor('#FF5722')" style="background-color: #FF5722")
+          .color-item(onclick="drawCanvas1.setCursorColor('#9E9E9E')" style="background-color: #9E9E9E")
+          .color-item(onclick="drawCanvas1.setCursorColor('#607D8B')" style="background-color: #607D8B")
+
+        .actions
+          button.btn.btn-primary(type="button" onclick="drawCanvas1.clearCanvas()") Limpar
+          button.btn.btn-primary(type="button" onclick="drawCanvas1.saveCanvas()") Salvar
+
+        .line-width
+          .form-group
+            .input-group
+              .input-group-addon
+                span.glyphicon.glyphicon-pencil(aria-hidden="true")
+              input.form-control(
+                type="number"
+                min="0"
+                onchange="drawCanvas1.setLineWidth(this.value)"
+                step="0.25"
+                style="width: 100px;"
+                value="1"
+              )
+
+      .drawer
+        canvas#draw-canvas(width="1000", height="500")
+
+    script(type="text/javascript" src="vendor/jquery/jquery.min.js")
+    script(type="text/javascript" src="js/draw-canvas.js")
+    script(type="text/javascript").
+      var drawCanvas1 = new DrawCanvas('draw-canvas');

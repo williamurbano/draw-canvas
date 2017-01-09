@@ -1,0 +1,24 @@
+{
+  "name": "draw-canvas",
+  "description": "A basic HTML5 canvas draw block",
+  "version": "1.0",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-coffee": "^2.3.3",
+    "gulp-connect": "^5.0.0",
+    "gulp-copy": "^1.0.0",
+    "gulp-data": "^1.2.1",
+    "gulp-less": "^3.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-sourcemaps": "^2.2.3",
+    "gulp-watch": "^4.3.11",
+    "jquery": "^3.1.1",
+    "less-plugin-autoprefix": "^1.5.1",
+    "run-sequence": "^1.2.2"
+  },
+  "author": "William Urbano <williamurbano@icloud.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,32 @@
+body {
+  padding-top: 15px;
+}
+canvas#draw-canvas {
+  border: 1px solid #000;
+  cursor: default;
+  cursor: none;
+  cursor: crosshair;
+}
+.toolbar {
+  display: table;
+  padding: 10px 0;
+}
+.toolbar > * {
+  margin-right: 5px;
+}
+.toolbar .color-palette {
+  display: inline-block;
+  vertical-align: middle;
+}
+.toolbar .color-palette .color-item {
+  display: block;
+  float: left;
+  width: 30px;
+  height: 30px;
+}
+.toolbar .actions {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*# sourceMappingURL=C:/Users/william.urbano/Documents/Projetos/localhost/tests/sigcanvas/dist/css/draw-canvas.css.map */
