@@ -1,25 +1,28 @@
-var gulp = require('gulp');
-var pug = require('gulp-pug');
-var less = require('gulp-less');
-var coffee = require('gulp-coffee');
-var watch = require('gulp-watch');
-var clean = require('gulp-clean');
-var connect = require('gulp-connect');
-var sourcemaps = require('gulp-sourcemaps');
-var plumber = require('gulp-plumber');
-var copy = require('gulp-copy');
+var autoprefix, clean, coffee, coffeeGlobs, connect, devDir, distDir, gulp,
+    less, LessAutoprefix, lessGlobs, plumber, pug, pugGlobs, runSequence,
+    sourcemaps, srcDir, watch;
 
-var runSequence = require('run-sequence');
-var LessAutoprefix = require('less-plugin-autoprefix');
-var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
+gulp = require('gulp');
+pug = require('gulp-pug');
+less = require('gulp-less');
+coffee = require('gulp-coffee');
+watch = require('gulp-watch');
+clean = require('gulp-clean');
+connect = require('gulp-connect');
+sourcemaps = require('gulp-sourcemaps');
+plumber = require('gulp-plumber');
 
-var srcDir = __dirname + '/src';
-var devDir = __dirname + '/.tmp';
-var distDir = __dirname + '/dist';
+runSequence = require('run-sequence');
+LessAutoprefix = require('less-plugin-autoprefix');
+autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
 
-var pug_files = srcDir + '/**/*.pug';
-var less_files = srcDir + '/less/*.less';
-var coffee_files = srcDir + '/coffee/*.coffee';
+srcDir = __dirname + '/src';
+devDir = __dirname + '/.tmp';
+distDir = __dirname + '/dist';
+
+pugGlobs = srcDir + '/**/*.pug';
+lessGlobs = srcDir + '/less/*.less';
+coffeeGlobs = srcDir + '/coffee/*.coffee';
 
 // clean development package
 gulp.task('clean-dev', function () {
@@ -37,7 +40,7 @@ gulp.task('clean-dist', function () {
 
 // compile pug templates
 gulp.task('pug-dev', function() {
-    return gulp.src(pug_files)
+    return gulp.src(pugGlobs)
         .pipe(plumber())
         .pipe(pug({
             pretty: true
@@ -48,7 +51,7 @@ gulp.task('pug-dev', function() {
 
 // compile pug templates
 gulp.task('pug-dist', function() {
-    return gulp.src(pug_files)
+    return gulp.src(pugGlobs)
         .pipe(plumber())
         .pipe(pug())
         .pipe(gulp.dest(distDir));
@@ -56,7 +59,7 @@ gulp.task('pug-dist', function() {
 
 // compile less files
 gulp.task('less-dev', function () {
-    return gulp.src(less_files)
+    return gulp.src(lessGlobs)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(less({
@@ -69,7 +72,7 @@ gulp.task('less-dev', function () {
 
 // compile less files
 gulp.task('less-dist', function () {
-    return gulp.src(less_files)
+    return gulp.src(lessGlobs)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(less({
@@ -81,7 +84,7 @@ gulp.task('less-dist', function () {
 
 // compile coffeescript files
 gulp.task('coffee-dev', function () {
-    return gulp.src(coffee_files)
+    return gulp.src(coffeeGlobs)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(coffee({
@@ -94,7 +97,7 @@ gulp.task('coffee-dev', function () {
 
 // compile coffeescript files
 gulp.task('coffee-dist', function () {
-    return gulp.src(coffee_files)
+    return gulp.src(coffeeGlobs)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(coffee({
@@ -115,9 +118,9 @@ gulp.task('connect', function() {
 
 // watch file changes
 gulp.task('watch', function () {
-    gulp.watch(pug_files, ['pug-dev']);
-    gulp.watch(less_files, ['less-dev']);
-    gulp.watch(coffee_files, ['coffee-dev']);
+    gulp.watch(pugGlobs, ['pug-dev']);
+    gulp.watch(lessGlobs, ['less-dev']);
+    gulp.watch(coffeeGlobs, ['coffee-dev']);
 });
 
 // copy jquery files
@@ -132,6 +135,13 @@ gulp.task('copy-jquery-dist', function() {
     return gulp.src('node_modules/jquery/dist/jquery.min.js')
         .pipe(plumber())
         .pipe(gulp.dest(distDir + '/vendor/jquery'));
+});
+
+// copy bootstrap files
+gulp.task('copy-bs-dev', function() {
+    return gulp.src('node_modules/bootstrap/dist/**')
+        .pipe(plumber())
+        .pipe(gulp.dest(devDir + '/vendor/bootstrap'));
 });
 
 // copy bootstrap files
